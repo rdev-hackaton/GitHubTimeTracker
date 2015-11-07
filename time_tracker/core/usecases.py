@@ -9,12 +9,12 @@ def get_entries_list(data_source, repo_name, committer, issue, milestone):
         return {
             'result': Result.REPO_NOT_FOUND
         }
-    commiter = repo.get_by_commiter(committer)
-    if not commiter:
+    committer = repo.get_by_committer(committer)
+    if not committer:
         return {
-            'result': Result.COMMITER_NOT_FOUND
+            'result': Result.COMMITTER_NOT_FOUND
         }
-    entries = CommitterParser(commiter)
+    entries = CommitterParser(committer)
     return {
         'result': Result.OK,
         'entries': entries
