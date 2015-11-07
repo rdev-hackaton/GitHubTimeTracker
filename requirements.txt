@@ -1,2 +1,4 @@
+# Dev requirements:
 # For creating unit tests
 pytest==2.8.2
+flake8==2.5.0
