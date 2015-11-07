@@ -1,6 +1,6 @@
 import pytest
 
-from config import Config
+from time_tracker.config import Config
 
 
 @pytest.fixture

@@ -20,3 +20,11 @@ def time_from_string(s):
         if match:
             kwargs = {k: int(v or 0) for k, v in match.groupdict().items()}
             return timedelta(**kwargs)
+
+
+class IssueParser:
+    pass  # TODO
+
+
+class CommiterParser:
+    pass  # TODO
