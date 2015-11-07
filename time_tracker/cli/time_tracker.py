@@ -34,14 +34,14 @@ def print_time_tracking_info(repo, committer, issue, milestone, total):
     if milestone:
         click.echo('    Results limited to milestone: ' + milestone)
 
-    data_source = None  # FIXME creation of DataSource
+    data_source = None
 
     if total:
-        stats = get_total_stats(data_source, repo, committer, issue, milestone)
-        pretty_print_stats(stats)
+        pretty_print_stats(get_total_stats(data_source, repo, committer,
+                                           issue, milestone))
     else:
-        for entry in get_entries_list(data_source, repo, committer, issue,
-                                      milestone):
+        for entry in get_entries_list(data_source, repo, committer,
+                                      issue, milestone):
             pretty_print_entry(entry)
 
 
