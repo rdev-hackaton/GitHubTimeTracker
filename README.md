@@ -1,5 +1,6 @@
 # GitHubTimeTracker
 
+[![Build Status](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker.svg)](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rdev-hackaton/GitHubTimeTracker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 GitHubTimeTracker is a python library inspired on [StephenOTT](https://github.com/StephenOTT) / [Github-Time-Tracking](https://github.com/StephenOTT/GitHub-Time-Tracking#time-tracking-usage-patterns)
