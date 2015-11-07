@@ -1,5 +1,5 @@
 import click
-from ..core.usecases import get_entries_list, get_total_stats
+from time_tracker.core.usecases import get_entries_list, get_total_stats
 
 
 @click.command()
