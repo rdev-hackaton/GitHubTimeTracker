@@ -15,7 +15,7 @@ _entry_re = re.compile(
 
 
 def entry_from_string(s):
-    """Given a string, return spent time as a timedelta object.
+    """Given a string, return an Entry object.
 
     >>> entry = entry_from_string(':clock1: 5m | Initial commit')
     >>> entry.time
