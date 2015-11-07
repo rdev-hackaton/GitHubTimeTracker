@@ -54,6 +54,12 @@ class User:
         self.url = url
 
 
+class Comment:
+    def __init__(self, message, author):
+        self.message = message
+        self.author = author
+
+
 class Entry:
     """Represents a time entry."""
 

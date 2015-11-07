@@ -26,7 +26,7 @@ class Repository(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def get_issue_by_id(self, issue_id):
+    def get_issue(self, issue_id):
         """
         :type issue_id: int
         :rtype: time_tracker.core.entities.Issue | None
@@ -46,15 +46,14 @@ class Repository(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def get_commit_by_id(self, commit_id):
+    def get_commit(self, sha):
         """
-        :type commit_id: int
+        :type sha: str
         :rtype: time_tracker.core.entities.Commit | None
         """
 
     @abc.abstractmethod
-    def get_users(self):
+    def get_contributors(self):
         """
         :rtype: time_tracker.core.entities.Commiter
         """
-        pass

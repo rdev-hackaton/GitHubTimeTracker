@@ -6,11 +6,15 @@ Classes used to mock data received from github library
 """
 class Issue(object):
 
-    def __init__(self, title, assignee, body, number):
+    def __init__(self, title, assignee, body, number, comments):
+        self.comments = comments
         self.number = number
         self.title = title
         self.assignee = assignee
         self.body = body
+
+    def get_comments(self):
+        return self.comments
 
 
 class Commit(object):
@@ -37,6 +41,14 @@ class GitCommit(object):
         self.committer = committer
         self.message = message
         self.url = url
+
+
+class IssueComment(object):
+
+    def __init__(self, body, url, user):
+        self.url = url
+        self.body = body
+        self.user = user
 
 
 """
@@ -74,6 +86,16 @@ class CommitFactory(factory.Factory):
     url = factory.Faker('url')
 
 
+class IssueCommentFactory(factory.Factory):
+
+    class Meta:
+        model = IssueComment
+
+    body = factory.Faker('sentence')
+    url = factory.Faker('url')
+    user = factory.SubFactory(UserFactory)
+
+
 class IssueFactory(factory.Factory):
 
     class Meta:
@@ -83,3 +105,4 @@ class IssueFactory(factory.Factory):
     title = factory.Faker('word')
     body = factory.Faker('sentence')
     number = factory.Sequence(lambda x: x)
+    comments = factory.List([IssueCommentFactory() for _ in range(4)])
