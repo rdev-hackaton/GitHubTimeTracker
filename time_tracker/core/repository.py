@@ -40,6 +40,6 @@ class Repository(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_users(self):
         """
-        :rtype: time_tracker.core.entities.Commiter
+        :rtype: time_tracker.core.entities.Committer
         """
         pass
