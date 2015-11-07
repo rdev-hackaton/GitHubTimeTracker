@@ -1,6 +1,9 @@
 import factory
 
 
+"""
+Classes used to mock data received from github library
+"""
 class Issue(object):
 
     def __init__(self, title, assignee, body, number):
@@ -36,6 +39,9 @@ class GitCommit(object):
         self.url = url
 
 
+"""
+Factories to fake data received from github library
+"""
 class UserFactory(factory.Factory):
 
     class Meta:
