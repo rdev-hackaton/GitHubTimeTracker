@@ -13,10 +13,10 @@ class GithubRepository(Repository):
     def __init__(self, name):
         Repository.__init__(self, name)
 
-    def get_commits_of_user(self, username):
+    def get_commits_by_user_name(self, username):
         g = Github()
         commits = g.get_repo(self.name).get_commits(author=username)
-        return
+        return commits
 
     def get_users(self):
         pass
