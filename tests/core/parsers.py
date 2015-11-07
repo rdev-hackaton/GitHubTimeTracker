@@ -21,7 +21,7 @@ class TestEntryFromString:
 
     def test_comment(self):
         comment = lambda s: entry_from_string(s).comment
-        assert comment(':clock1: 5m') == '', "No comment"
+        assert comment(':clock1: 5m') is None, "No comment"
         assert comment(':clock1: 5m Hello world') == \
             'Hello world', "Simple case"
         assert comment(':clock1: 5m | Hello world') == \

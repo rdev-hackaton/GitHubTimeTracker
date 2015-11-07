@@ -27,7 +27,7 @@ def entry_from_string(s):
         match = _entry_re.match(part.strip())
         if match:
             results = match.groupdict()
-            comment = results.pop('comment') or ''
+            comment = results.pop('comment')
 
             kwargs = {k: int(v or 0) for k, v in results.items()}
             time = timedelta(**kwargs)

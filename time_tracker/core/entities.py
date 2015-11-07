@@ -24,6 +24,6 @@ class Commiter:
 class Entry:
     """Represents a time entry."""
 
-    def __init__(self, time, comment):
+    def __init__(self, time, comment=None):
         self.time = time
         self.comment = comment
