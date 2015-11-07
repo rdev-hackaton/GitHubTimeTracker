@@ -1,6 +1,6 @@
 from .results import Result
 
-from .parsers import CommiterParser
+CommiterParser = object()  # TODO
 
 
 def get_entries_list(data_source, repo_name, committer, issue, milestone):

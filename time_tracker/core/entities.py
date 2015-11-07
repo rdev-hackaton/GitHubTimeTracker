@@ -1,4 +1,15 @@
-from .parsers import entry_from_string
+import re
+from datetime import timedelta
+
+
+_entry_re = re.compile(
+    r'''\s*
+    :clock\d+:\s*                   # The clock emoji
+    (?:(?P<days>\d+)d)?             # Days
+    (?:(?P<hours>\d+)h)?            # Hours
+    (?:(?P<minutes>\d+)m)?          # Minutes
+    (?:\s*(\|\s*)?(?P<comment>.+))? # Comment
+    \s*''', re.VERBOSE | re.IGNORECASE)
 
 
 class Issue:
@@ -9,10 +20,12 @@ class Issue:
         self.comments = comments or []
 
     def get_entries(self):
-        entries = [entry_from_string(self.message)] + [
-            entry_from_string(comment) for comment in self.comments
-        ]
-        return filter(None, entries)
+        entries = []
+        for comment in [self.message] + self.comments:
+            entry = Entry.from_string(comment)
+            if entry:
+                entries.append(entry)
+        return entries
 
 
 class Commit:
@@ -23,8 +36,9 @@ class Commit:
         self.time = time
 
     def get_entries(self):
-        entry = [entry_from_string(self.message)]
-        return filter(None, entry)
+        entry = Entry.from_string(self.message)
+        return [entry] if entry else []
+
 
 class Committer:
     def __init__(self, name, email, user=None):
@@ -42,5 +56,21 @@ class Entry:
 
     @classmethod
     def from_string(cls, string):
-        from .parsers import entry_from_string
-        return entry_from_string(string)
+        """Initialize an Entry object from string.
+
+        >>> entry = Entry.from_string(':clock1: 5m | Initial commit')
+        >>> entry.time
+        datetime.timedelta(0, 300)
+        >>> entry.comment
+        'Initial commit'
+        >>> Entry.from_string('Invalid') is None
+        True
+        """
+        for part in string.split('\n'):
+            match = _entry_re.match(part.strip())
+            if match:
+                results = match.groupdict()
+                comment = results.pop('comment')
+                kwargs = {k: int(v or 0) for k, v in results.items()}
+                time = timedelta(**kwargs)
+                return Entry(time, comment)

@@ -1,11 +1,11 @@
 from datetime import timedelta
 
-from time_tracker.core.parsers import entry_from_string
+from time_tracker.core.entities import Entry
 
 
 class TestEntryFromString:
     def test_time(self):
-        time = lambda s: entry_from_string(s).time
+        time = lambda s: Entry.from_string(s).time
         assert time(':cLoCk1: 5M') == \
             timedelta(minutes=5), "Any case"
         assert time('  :clock1:  5m  ') == \
@@ -20,7 +20,7 @@ class TestEntryFromString:
             timedelta(minutes=5), "Can be anywhere"
 
     def test_comment(self):
-        comment = lambda s: entry_from_string(s).comment
+        comment = lambda s: Entry.from_string(s).comment
         assert comment(':clock1: 5m') is None, "No comment"
         assert comment(':clock1: 5m Hello world') == \
             'Hello world', "Simple case"
