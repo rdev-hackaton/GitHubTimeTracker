@@ -37,9 +37,11 @@ def print_time_tracking_info(repo, committer, issue, milestone, total):
     data_source = None  # FIXME creation of DataSource
 
     if total:
-        pretty_print_stats(get_total_stats(data_source, repo, committer, issue, milestone))
+        stats = get_total_stats(data_source, repo, committer, issue, milestone)
+        pretty_print_stats(stats)
     else:
-        for entry in get_entries_list(data_source, repo, committer, issue, milestone):
+        for entry in get_entries_list(data_source, repo, committer, issue,
+                                      milestone):
             pretty_print_entry(entry)
 
 
