@@ -44,7 +44,8 @@ class BackendConfig:
                 except (AttributeError, ImportError):
                     raise ImportError(
                         "Can't import '{}'."
-                        " Maybe module_path of {} backend in config file is invalid?"
+                        " Maybe module_path of {} backend"
+                        " in config file is invalid?"
                         .format(self.module_path, self.name)
                     )
         return self._module

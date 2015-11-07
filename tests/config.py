@@ -1,7 +1,8 @@
 import os
 import pytest
 
-from time_tracker.config import BackendConfig, Backends, Config, ConfigFileDataError
+from time_tracker.config import BackendConfig, Backends, \
+    Config, ConfigFileDataError
 
 
 class TestBackendConfig:
@@ -98,7 +99,8 @@ class TestBackends:
     def test_backends_default_from_config(self):
         backends_list = [
             {'name': 'Dummy', 'module_path': 'tests.dummy_backend'},
-            {'name': 'Goofy', 'module_path': 'tests.dummy_backend', 'default': True},
+            {'name': 'Goofy', 'module_path': 'tests.dummy_backend',
+             'default': True},
         ]
         backends = self.build_backends(backends_list)
         assert backends.Dummy
@@ -149,7 +151,8 @@ class TestBackends:
     @pytest.mark.parametrize("backend_index", [
         0, 1, 2
     ])
-    def test_backends_set_default_success_backend(self, backends, backend_index):
+    def test_backends_set_default_success_backend(self, backends,
+                                                  backend_index):
         backend = backends._backends[backend_index]
         backends.set_default(backend)
         assert backends.default == backend
