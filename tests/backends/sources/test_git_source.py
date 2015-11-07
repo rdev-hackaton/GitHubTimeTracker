@@ -3,7 +3,8 @@
 
 import mock
 
-from tests.backends.sources.mock_models import CommitFactory, UserFactory, IssueFactory
+from tests.backends.sources.mock_models import CommitFactory, UserFactory, \
+    IssueFactory
 from time_tracker.core.data_source import Repository
 from time_tracker.core.entities import Commit, Committer, Issue, Comment
 from time_tracker.backends.sources.github_source import GithubDataSource, \
