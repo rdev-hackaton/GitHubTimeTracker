@@ -29,14 +29,14 @@ class TestBackendConfig:
             BackendConfig(config_dict)
 
     @pytest.mark.parametrize('config_dict', [
-        {'name': 'Dummy', 'module_path': 'tests.dummy_backend'},
-        {'name': 'Dummy', 'module_path': 'tests.dummy_backend',
+        {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend'},
+        {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend',
          'repo_name_pattern': ''},
-        {'name': 'Dummy', 'module_path': 'tests.dummy_backend',
+        {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend',
          'repo_name_pattern': 'dummy'},
-        {'name': 'Dummy', 'module_path': 'tests.dummy_backend',
+        {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend',
          'repo_name_pattern': '', 'default': True},
-        {'name': 'Dummy', 'module_path': 'tests.dummy_backend.DummyBackend'}
+        {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend.DummyBackend'}
     ])
     def test_creating_backend_config_success(self, config_dict):
         backend_config = BackendConfig(config_dict)
@@ -70,9 +70,9 @@ class TestBackends:
     @pytest.fixture("class")
     def backends(self):
         backends_list = [
-            {'name': 'Dummy', 'module_path': 'tests.dummy_backend'},
-            {'name': 'Goofy', 'module_path': 'tests.dummy_backend'},
-            {'name': 'Spooky', 'module_path': 'tests.dummy_backend'}
+            {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend'},
+            {'name': 'Goofy', 'module_path': 'tests.config.dummy_backend'},
+            {'name': 'Spooky', 'module_path': 'tests.config.dummy_backend'}
         ]
         return self.build_backends(backends_list)
 
@@ -98,8 +98,8 @@ class TestBackends:
 
     def test_backends_default_from_config(self):
         backends_list = [
-            {'name': 'Dummy', 'module_path': 'tests.dummy_backend'},
-            {'name': 'Goofy', 'module_path': 'tests.dummy_backend',
+            {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend'},
+            {'name': 'Goofy', 'module_path': 'tests.config.dummy_backend',
              'default': True},
         ]
         backends = self.build_backends(backends_list)
@@ -110,8 +110,8 @@ class TestBackends:
 
     def test_backends_default_unset(self):
         backends_list = [
-            {'name': 'Dummy', 'module_path': 'tests.dummy_backend'},
-            {'name': 'Goofy', 'module_path': 'tests.dummy_backend'},
+            {'name': 'Dummy', 'module_path': 'tests.config.dummy_backend'},
+            {'name': 'Goofy', 'module_path': 'tests.config.dummy_backend'},
         ]
         backends = self.build_backends(backends_list)
         assert backends.Dummy
@@ -133,7 +133,7 @@ class TestBackends:
         12,
         "asdasd",
         object(),
-        BackendConfig({'name': 'Hello', 'module_path': 'tests.dummy_backend'})
+        BackendConfig({'name': 'Hello', 'module_path': 'tests.config.dummy_backend'})
     ])
     def test_backends_set_default_fail(self, backends, backend):
         with pytest.raises(TypeError):

@@ -1,0 +1,7 @@
+{
+  "BACKENDS": [
+    {"name": "Dummy", "module_path": "tests.config.dummy_backend"},
+    {"name": "Goofy", "module_path": "tests.config.dummy_backend"},
+    {"name": "Spooky", "module_path": "tests.config.dummy_backend"}
+  ]
+}

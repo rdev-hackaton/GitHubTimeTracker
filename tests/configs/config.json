@@ -1,7 +1,0 @@
-{
-  "BACKENDS": [
-    {"name": "Dummy", "module_path": "tests.dummy_backend"},
-    {"name": "Goofy", "module_path": "tests.dummy_backend"},
-    {"name": "Spooky", "module_path": "tests.dummy_backend"}
-  ]
-}

@@ -3,10 +3,10 @@
 
 import mock
 
-from tests.sources.mock_models import CommitFactory, UserFactory, IssueFactory
+from tests.backends.sources.mock_models import CommitFactory, UserFactory, IssueFactory
 from time_tracker.core.data_source import Repository
 from time_tracker.core.entities import Commit, Committer, Issue, Comment
-from time_tracker.sources.github_source import GithubDataSource, \
+from time_tracker.backends.sources.github_source import GithubDataSource, \
     GithubRepository
 
 
@@ -16,7 +16,7 @@ def test_get_repository():
     assert repository.name == "test_repo"
 
 
-@mock.patch('time_tracker.sources.github_source.Github')
+@mock.patch('time_tracker.backends.sources.github_source.Github')
 def test_get_commits(mock_client):
     mock_commits = CommitFactory.create_batch(3)
     mock_client.return_value.get_repo.return_value.get_commits.return_value = \
@@ -31,7 +31,7 @@ def test_get_commits(mock_client):
         assert mock_c.committer.name == c.committer.name
 
 
-@mock.patch('time_tracker.sources.github_source.Github')
+@mock.patch('time_tracker.backends.sources.github_source.Github')
 def test_get_commits_by_author(mock_client):
     mock_commits = CommitFactory.create_batch(3)
     mock_client.return_value.get_repo.return_value.get_commits.return_value = \
@@ -46,7 +46,7 @@ def test_get_commits_by_author(mock_client):
         assert mock_c.committer.name == c.committer.name
 
 
-@mock.patch('time_tracker.sources.github_source.Github')
+@mock.patch('time_tracker.backends.sources.github_source.Github')
 def test_get_commit_by_id(mock_client):
     mock_commit = CommitFactory()
     mock_client.return_value.get_repo.return_value.get_commit.return_value = \
@@ -60,7 +60,7 @@ def test_get_commit_by_id(mock_client):
     assert mock_commit.committer.name == commit.committer.name
 
 
-@mock.patch('time_tracker.sources.github_source.Github')
+@mock.patch('time_tracker.backends.sources.github_source.Github')
 def test_get_users(mock_client):
     mock_users = UserFactory.create_batch(3)
     mock_client.return_value.get_repo.return_value.get_contributors.return_value = \
@@ -74,7 +74,7 @@ def test_get_users(mock_client):
         assert mock_u.name == u.name
 
 
-@mock.patch('time_tracker.sources.github_source.Github')
+@mock.patch('time_tracker.backends.sources.github_source.Github')
 def test_get_issues(mock_client):
     mock_issues = IssueFactory.create_batch(3)
     mock_client.return_value.get_repo.return_value.get_issues.return_value = \
@@ -93,7 +93,7 @@ def test_get_issues(mock_client):
             assert mock_comment.body == comment.message
 
 
-@mock.patch('time_tracker.sources.github_source.Github')
+@mock.patch('time_tracker.backends.sources.github_source.Github')
 def test_get_issue(mock_client):
     mock_issue = IssueFactory()
     mock_client.return_value.get_repo.return_value.get_issue.return_value = \
