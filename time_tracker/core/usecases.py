@@ -5,6 +5,7 @@ from .parsers import IssueParser, CommiterParser
 
 
 def get_all_entries_for_issue(repo_name, issue_id):
+    """All entries for issue"""
     issue_repo = Config.get_repo(repo_name)
     if not issue_repo:
         return {
@@ -22,8 +23,9 @@ def get_all_entries_for_issue(repo_name, issue_id):
     }
 
 
-def get_all_entries_for_commiter(repo_name, commiter_id):
-    issue_repo = Config.get_repo(repo_name)
+def get_all_entries_of_commiter(repo_name, commiter_id):
+    """All entries of commiter"""
+    issue_repo = Config.from_config(repo_name)
     if not issue_repo:
         return {
             'result': Result.REPO_NOT_FOUND
@@ -41,8 +43,24 @@ def get_all_entries_for_commiter(repo_name, commiter_id):
 
 
 def get_project_budget(repo_name):
+    """Project budget"""
     issue_repo = Config.get_repo(repo_name)
     if not issue_repo:
         return {
             'result': Result.REPO_NOT_FOUND
         }
+
+
+def get_project_time(repo_name):
+    """Get overall time spent at project"""
+    return True
+
+
+def get_issue_developers(repo_name, issue_id):
+    """Get issue developers"""
+    return True
+
+
+def get_developer_time_at_project(repo_name):
+    """Get time spent by developer at project"""
+    return True
