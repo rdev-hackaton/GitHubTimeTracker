@@ -4,10 +4,11 @@
 import mock
 
 from tests.sources.mock_models import CommitFactory, UserFactory, IssueFactory
-
 from time_tracker.core.data_source import Repository
-from time_tracker.core.entities import Commit, User, Committer, Issue
-from time_tracker.sources.github_source import GithubDataSource, GithubRepository
+from time_tracker.core.entities import Commit, Committer, Issue
+from time_tracker.sources.github_source import GithubDataSource, \
+    GithubRepository
+
 
 def test_get_repository():
     repository = GithubDataSource().get_repo("test_repo")
@@ -18,7 +19,8 @@ def test_get_repository():
 @mock.patch('time_tracker.sources.github_source.Github')
 def test_get_commits(mock_client):
     mock_commits = CommitFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_commits.return_value = mock_commits
+    mock_client.return_value.get_repo.return_value.get_commits.return_value = \
+        mock_commits
     repo = GithubRepository('test/test')
     commits = repo.get_commits()
     assert len(mock_commits) == len(commits)
@@ -32,7 +34,8 @@ def test_get_commits(mock_client):
 @mock.patch('time_tracker.sources.github_source.Github')
 def test_get_commits_by_author(mock_client):
     mock_commits = CommitFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_commits.return_value = mock_commits
+    mock_client.return_value.get_repo.return_value.get_commits.return_value = \
+        mock_commits
     repo = GithubRepository('test/test')
     commits = repo.get_commits_by_user_name('Test')
     assert len(mock_commits) == len(commits)
@@ -46,7 +49,8 @@ def test_get_commits_by_author(mock_client):
 @mock.patch('time_tracker.sources.github_source.Github')
 def test_get_commit_by_id(mock_client):
     mock_commit = CommitFactory()
-    mock_client.return_value.get_repo.return_value.get_commit.return_value = mock_commit
+    mock_client.return_value.get_repo.return_value.get_commit.return_value = \
+        mock_commit
     repo = GithubRepository('test/test')
     commit = repo.get_commit_by_id('#123fdsf34f')
 
@@ -59,7 +63,8 @@ def test_get_commit_by_id(mock_client):
 @mock.patch('time_tracker.sources.github_source.Github')
 def test_get_users(mock_client):
     mock_users = UserFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_contributors.return_value = mock_users
+    mock_client.return_value.get_repo.return_value.get_contributors.return_value = \
+        mock_users
     repo = GithubRepository('test/test')
     users = repo.get_users()
     assert len(mock_users) == len(users)
@@ -72,7 +77,8 @@ def test_get_users(mock_client):
 @mock.patch('time_tracker.sources.github_source.Github')
 def test_get_issues(mock_client):
     mock_issues = IssueFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_issues.return_value = mock_issues
+    mock_client.return_value.get_repo.return_value.get_issues.return_value = \
+        mock_issues
     repo = GithubRepository('test/test')
     issues = repo.get_issues()
     assert len(mock_issues) == len(issues)
@@ -86,7 +92,8 @@ def test_get_issues(mock_client):
 @mock.patch('time_tracker.sources.github_source.Github')
 def test_get_issue(mock_client):
     mock_issue = IssueFactory()
-    mock_client.return_value.get_repo.return_value.get_issue.return_value = mock_issue
+    mock_client.return_value.get_repo.return_value.get_issue.return_value = \
+        mock_issue
     repo = GithubRepository('test/test')
     issue = repo.get_issue_by_id(23)
 
@@ -94,7 +101,3 @@ def test_get_issue(mock_client):
     assert mock_issue.title == issue.name
     assert mock_issue.body == issue.message
     assert mock_issue.number == issue.number
-
-
-
-

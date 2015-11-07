@@ -1,6 +1,7 @@
 from github import Github
+
 from time_tracker.core.data_source import DataSource, Repository
-from time_tracker.core.entities import Commit, User, Committer, Issue
+from time_tracker.core.entities import Commit, Committer, Issue
 
 
 class GithubDataSource(DataSource):
@@ -51,4 +52,3 @@ class GithubRepository(Repository):
     @staticmethod
     def _issue_to_model(issue):
         return Issue(issue.number, issue.title, issue.body, [])
-
