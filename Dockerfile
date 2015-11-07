@@ -2,6 +2,7 @@ FROM python:3.4
 
 RUN apt-get update -y -qq --fix-missing
 RUN apt-get install -y wget
+RUN apt-get install -y git vim
 
 ADD / /app
 ADD /requirements.txt /app/
