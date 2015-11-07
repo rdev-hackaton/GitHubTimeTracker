@@ -4,6 +4,8 @@ import factory
 """
 Classes used to mock data received from github library
 """
+
+
 class Issue(object):
 
     def __init__(self, title, assignee, body, number, comments):
@@ -54,6 +56,8 @@ class IssueComment(object):
 """
 Factories to fake data received from github library
 """
+
+
 class UserFactory(factory.Factory):
 
     class Meta:

@@ -105,7 +105,7 @@ def test_get_issue(mock_client):
     assert mock_issue.title == issue.name
     assert mock_issue.body == issue.message
     assert mock_issue.number == issue.number
-    for mock_comment, comment in zip(mock_issue.get_comments(), issue.comments):
+    for mock_c, comment in zip(mock_issue.get_comments(), issue.comments):
         assert isinstance(comment, Comment)
-        assert mock_comment.user.name == comment.author.name
-        assert mock_comment.body == comment.message
+        assert mock_c.user.name == comment.author.name
+        assert mock_c.body == comment.message
