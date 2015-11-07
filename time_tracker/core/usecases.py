@@ -1,7 +1,7 @@
 from .results import Result
 
-from ..core import Config
-from ..parsers import IssueParser
+from ..config import Config
+from .parsers import IssueParser, CommiterParser
 
 
 def get_all_entries_for_issue(repo_name, issue_id):
@@ -38,6 +38,7 @@ def get_all_entries_for_commiter(repo_name, commiter_id):
         'result': Result.OK,
         'entries': entries
     }
+
 
 def get_project_budget(repo_name):
     issue_repo = Config.get_repo(repo_name)
