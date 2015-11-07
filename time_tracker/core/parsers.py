@@ -33,11 +33,3 @@ def entry_from_string(s):
             time = timedelta(**kwargs)
 
             return Entry(time, comment)
-
-
-class IssueParser:
-    pass  # TODO
-
-
-class CommiterParser:
-    pass  # TODO
