@@ -1,17 +1,16 @@
 from .results import Result
 
-from ..config import Config
 from .parsers import IssueParser, CommiterParser
 
 
-def get_all_entries_for_issue(repo_name, issue_id):
+def get_all_entries_for_issue(data_source, repo_name, issue_id):
     """All entries for issue"""
-    issue_repo = Config.get_repo(repo_name)
-    if not issue_repo:
+    repo = data_source.get_repo(repo_name)
+    if not repo:
         return {
             'result': Result.REPO_NOT_FOUND
         }
-    issue = issue_repo.get_by_id(issue_id)
+    issue = repo.get_issue_by_id(issue_id)
     if not issue:
         return {
             'result': Result.ISSUE_NOT_FOUND
@@ -23,14 +22,14 @@ def get_all_entries_for_issue(repo_name, issue_id):
     }
 
 
-def get_all_entries_of_commiter(repo_name, commiter_id):
+def get_all_entries_of_commiter(data_source, repo_name, commiter_id):
     """All entries of commiter"""
-    issue_repo = Config.from_config(repo_name)
-    if not issue_repo:
+    repo = data_source.get_repo(repo_name)
+    if not repo:
         return {
             'result': Result.REPO_NOT_FOUND
         }
-    commiter = issue_repo.get_by_commiter(commiter_id)
+    commiter = repo.get_by_commiter(commiter_id)
     if not commiter:
         return {
             'result': Result.COMMITER_NOT_FOUND
@@ -42,25 +41,25 @@ def get_all_entries_of_commiter(repo_name, commiter_id):
     }
 
 
-def get_project_budget(repo_name):
+def get_project_budget(data_source, repo_name):
     """Project budget"""
-    issue_repo = Config.get_repo(repo_name)
-    if not issue_repo:
+    repo = data_source.get_repo(repo_name)
+    if not repo:
         return {
             'result': Result.REPO_NOT_FOUND
         }
 
 
-def get_project_time(repo_name):
+def get_project_time(data_source, repo_name):
     """Get overall time spent at project"""
     return True
 
 
-def get_issue_developers(repo_name, issue_id):
+def get_issue_developers(data_source, repo_name, issue_id):
     """Get issue developers"""
     return True
 
 
-def get_developer_time_at_project(repo_name):
+def get_developer_time_at_project(data_source, repo_name):
     """Get time spent by developer at project"""
     return True
