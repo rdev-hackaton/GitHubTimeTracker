@@ -4,6 +4,7 @@
 
 import abc
 
+
 class Repository(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
