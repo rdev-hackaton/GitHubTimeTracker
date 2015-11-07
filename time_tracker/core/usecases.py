@@ -4,27 +4,9 @@ from ..config import Config
 from .parsers import IssueParser, CommiterParser
 
 
-def get_all_entries_for_issue(repo_name, issue_id):
-    issue_repo = Config.get_repo(repo_name)
-    if not issue_repo:
-        return {
-            'result': Result.REPO_NOT_FOUND
-        }
-    issue = issue_repo.get_by_id(issue_id)
-    if not issue:
-        return {
-            'result': Result.ISSUE_NOT_FOUND
-        }
-    entries = IssueParser(issue)
-    return {
-        'result': Result.OK,
-        'entries': entries
-    }
-
-
-def get_all_entries_for_commiter(repo_name, commiter_id):
-    issue_repo = Config.get_repo(repo_name)
-    if not issue_repo:
+def get_entries_list(repo_name, author, issue, milestone):
+    repo = Config.get_repo(repo_name)
+    if not repo:
         return {
             'result': Result.REPO_NOT_FOUND
         }
@@ -40,8 +22,8 @@ def get_all_entries_for_commiter(repo_name, commiter_id):
     }
 
 
-def get_project_budget(repo_name):
-    issue_repo = Config.get_repo(repo_name)
+def get_total_stats(repo_name, author, issue, milestone):
+    repo = Config.get_repo(repo_name)
     if not issue_repo:
         return {
             'result': Result.REPO_NOT_FOUND
