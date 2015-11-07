@@ -37,7 +37,7 @@ def print_time_tracking_info(repo, author, issue, milestone, total):
     if total:
         pretty_print_stats(get_total_stats(repo, author, issue, milestone))
     else:
-        for entry in get_entries_list(repo, author, issue, total):
+        for entry in get_entries_list(repo, author, issue, milestone):
             pretty_print_entry(entry)
 
 
