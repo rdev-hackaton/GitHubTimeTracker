@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from ..time_tracker.parsers import time_from_string
+from time_tracker.core.parsers import time_from_string
 
 
 def test_time_from_string():
