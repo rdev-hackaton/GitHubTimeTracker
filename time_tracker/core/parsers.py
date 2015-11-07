@@ -1,8 +1,10 @@
 import re
 from datetime import timedelta
 
+from .entities import Entry
 
-_time_re = re.compile(
+
+_entry_re = re.compile(
     r'''\s*
     :clock\d+:\s*                   # The clock emoji
     (?:(?P<days>\d+)d)?             # Days
@@ -15,11 +17,14 @@ _time_re = re.compile(
 def entry_from_string(s):
     """Given a string, return spent time as a timedelta object.
 
-    >>> entry_from_string(':clock1: 5m')
-    (datetime.timedelta(0, 300), '')
+    >>> entry = entry_from_string(':clock1: 5m | Initial commit')
+    >>> entry.time
+    datetime.timedelta(0, 300)
+    >>> entry.comment
+    'Initial commit'
     """
     for part in s.split('\n'):
-        match = _time_re.match(part.strip())
+        match = _entry_re.match(part.strip())
         if match:
             results = match.groupdict()
             comment = results.pop('comment') or ''
@@ -27,7 +32,7 @@ def entry_from_string(s):
             kwargs = {k: int(v or 0) for k, v in results.items()}
             time = timedelta(**kwargs)
 
-            return time, comment
+            return Entry(time, comment)
 
 
 class IssueParser:

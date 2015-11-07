@@ -5,7 +5,7 @@ from time_tracker.core.parsers import entry_from_string
 
 class TestEntryFromString:
     def test_time(self):
-        time = lambda s: entry_from_string(s)[0]
+        time = lambda s: entry_from_string(s).time
         assert time(':cLoCk1: 5M') == \
             timedelta(minutes=5), "Any case"
         assert time('  :clock1:  5m  ') == \
@@ -20,7 +20,7 @@ class TestEntryFromString:
             timedelta(minutes=5), "Can be anywhere"
 
     def test_comment(self):
-        comment = lambda s: entry_from_string(s)[1]
+        comment = lambda s: entry_from_string(s).comment
         assert comment(':clock1: 5m') == '', "No comment"
         assert comment(':clock1: 5m Hello world') == \
             'Hello world', "Simple case"
