@@ -1,6 +1,6 @@
 from .results import Result
 
-CommiterParser = object()  # TODO
+CommitterParser = object()  # TODO
 
 
 def get_entries_list(data_source, repo_name, committer, issue, milestone):
@@ -14,7 +14,7 @@ def get_entries_list(data_source, repo_name, committer, issue, milestone):
         return {
             'result': Result.COMMITER_NOT_FOUND
         }
-    entries = CommiterParser(commiter)
+    entries = CommitterParser(commiter)
     return {
         'result': Result.OK,
         'entries': entries
