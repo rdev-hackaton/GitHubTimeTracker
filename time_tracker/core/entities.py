@@ -19,3 +19,11 @@ class Commiter:
         self.name = name
         self.email = email
         self.user = user
+
+
+class Entry:
+    """Represents a time entry."""
+
+    def __init__(self, time, comment=None):
+        self.time = time
+        self.comment = comment

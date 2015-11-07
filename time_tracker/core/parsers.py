@@ -1,29 +1,38 @@
-from itertools import chain
 import re
 from datetime import timedelta
 
+from .entities import Entry
 
-_time_re = re.compile(
+
+_entry_re = re.compile(
     r'''\s*
-    :clock\d+:\s*          # The clock emoji
-    (?:(?P<days>\d+)d)?    # Days
-    (?:(?P<hours>\d+)h)?   # Hours
-    (?:(?P<minutes>\d+)m)? # Minutes
+    :clock\d+:\s*                   # The clock emoji
+    (?:(?P<days>\d+)d)?             # Days
+    (?:(?P<hours>\d+)h)?            # Hours
+    (?:(?P<minutes>\d+)m)?          # Minutes
+    (?:\s*(\|\s*)?(?P<comment>.+))? # Comment
     \s*''', re.VERBOSE | re.IGNORECASE)
 
 
-def time_from_string(s):
-    """Given a string, return spent time as a timedelta object.
+def entry_from_string(s):
+    """Given a string, return an Entry object.
 
-    >>> time_from_string(':clock1: 5m')
+    >>> entry = entry_from_string(':clock1: 5m | Initial commit')
+    >>> entry.time
     datetime.timedelta(0, 300)
+    >>> entry.comment
+    'Initial commit'
     """
-    parts = (p.split('|') for p in s.split('\n'))
-    for part in chain(*parts):
-        match = _time_re.match(part.strip())
+    for part in s.split('\n'):
+        match = _entry_re.match(part.strip())
         if match:
-            kwargs = {k: int(v or 0) for k, v in match.groupdict().items()}
-            return timedelta(**kwargs)
+            results = match.groupdict()
+            comment = results.pop('comment')
+
+            kwargs = {k: int(v or 0) for k, v in results.items()}
+            time = timedelta(**kwargs)
+
+            return Entry(time, comment)
 
 
 class IssueParser:
