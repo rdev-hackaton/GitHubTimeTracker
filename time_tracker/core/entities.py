@@ -21,6 +21,13 @@ class Committer:
         self.user = user
 
 
+class User:
+    def __init__(self, name, email, url):
+        self.name = name
+        self.email = email
+        self.url = url
+
+
 class Entry:
     """Represents a time entry."""
 
