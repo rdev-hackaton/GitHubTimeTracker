@@ -1,0 +1,5 @@
+{
+  "BACKENDS": [
+    {"name": "GitHub", "module_path": "github_api", "repo_name_pattern": ""}
+  ]
+}
