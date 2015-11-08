@@ -46,7 +46,7 @@ You can tag your activities with the amount of time spent on them by adding a si
     :clock12: 2h 30m | Fix the javascript error on iOS / safari
     :clock5: 4d16h Yak shaving
 
-The line should begin with the `:clock1:` bit - pick any clock emoji you like - and then be followed by `Xd`, `Xh` or `Xm` for days, hours and minutes. The pipe symbol is optional, but strongly recommended as it provides a visual separation between the time log and the comment.
+The line should begin with the `:clock1:` bit - pick any clock emoji you like - and then be followed by `Xd`, `Xh` or `Xm` for days, hours and minutes. The pipe symbol is optional, but strongly recommended as it provides a visual separation between the time log and the comment. Any text after that will be treated as a comment to the time log entry.
 
 You can use this syntax to log time spent on commits, issues, pull requests and so forth.
 
