@@ -14,10 +14,10 @@ def get_entries_list(data_source, repo_name, committer=None, issue=None,
         entries.extend(issue.get_entries())
     else:
         issues = repo.get_issues()
-        entries.extend([
-            issue.get_entries()
-            for issue in issues
-        ])
+        for issue in issues:
+            issue_entries = issue.get_entries()
+            if len(issue_entries):
+                entries.extend(issue_entries)
     if committer:
         for commit in repo.get_commits_by_user_name(committer):
             entry = commit.get_entry()
