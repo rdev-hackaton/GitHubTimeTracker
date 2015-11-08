@@ -14,7 +14,7 @@ for tracking time and budget spent on project.
 ### CLI
 To get list of all commit entries in your project call GitHubTimeTracker with address to your repository. For more specific data use flags.
 
-    $ ghttracker
+    $ ghtt
     Repo address (url or local path):
     $ https://github.com/...
     
