@@ -1,6 +1,28 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 
-from time_tracker.core.entities import Entry
+from time_tracker.core.entities import Entry, Issue, Comment, User, Commit
+
+
+class TestEntriesFromEntities:
+
+    def test_entries_from_issue(self):
+        author = User('user', 'email', 'url')
+        comments = [Comment(':clock1: 1m', author)]
+        issue = Issue(2, 'test', ':clock1: 5h12m', comments)
+        valid_deltatimes = [
+            timedelta(hours=5, minutes=12),
+            timedelta(minutes=1)]
+        entries = issue.get_entries()
+        assert len(entries) == len(valid_deltatimes)
+        for entry in entries:
+            assert entry.time in valid_deltatimes
+
+    def test_entries_from_commit(self):
+        author = User('user', 'email', 'url')
+        commit = Commit(author, ':clock1: 1m', datetime(2015, 6, 15))
+        entries = commit.get_entries()
+        assert len(entries) == 1
+        assert entries[0].time == timedelta(minutes=1)
 
 
 class TestEntryFromString:
