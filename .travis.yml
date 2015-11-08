@@ -1,10 +1,9 @@
 language: python
 python: "3.4"
-install: "pip install -r requirements.txt"
+install: "pip install -r dev_requirements.txt"
 
 before_script:
     - flake8
-    - pip install pytest-cov coveralls
 script: py.test --cov=time_tracker
 after_success:
     - coveralls
