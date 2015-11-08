@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-name = 'time_tracker'
+name = 'ghtt'
 install_requires = [
     'click==5.1',
     'PyGithub==1.26.0',
