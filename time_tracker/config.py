@@ -41,7 +41,7 @@ class BackendConfig:
                     module_name, attr_name = self.module_path.rsplit('.', 1)
                     module = importlib.import_module(module_name)
                     self._module = getattr(module, attr_name)
-                except (AttributeError, ImportError):
+                except (AttributeError, ImportError, ValueError):
                     raise ImportError(
                         "Can't import '{}'."
                         " Maybe module_path of {} backend"

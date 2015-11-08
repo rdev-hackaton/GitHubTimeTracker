@@ -1,5 +1,6 @@
 import click
 from time_tracker.core.usecases import get_entries_list, get_total_stats
+from time_tracker.config import Config
 
 
 @click.command()
@@ -34,7 +35,8 @@ def print_time_tracking_info(repo, committer, issue, milestone, total):
     if milestone:
         click.echo('    Results limited to milestone: ' + milestone)
 
-    data_source = None
+    config = Config()
+    data_source = config.get_backend()()
 
     if total:
         pretty_print_stats(get_total_stats(data_source, repo, committer,
