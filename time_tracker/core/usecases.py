@@ -18,11 +18,16 @@ def get_entries_list(data_source, repo_name, committer=None, issue=None,
             issue.get_entries()
             for issue in issues
         ])
-    for commit in repo.get_commits():
-        entry = commit.get_entry()
-        if entry:
-            entries.append(entry)
-    # TODO filter by committer & milestone
+    if committer:
+        for commit in repo.get_commits_by_user_name(committer):
+            entry = commit.get_entry()
+            if entry:
+                entries.append(entry)
+    else:
+        for commit in repo.get_commits():
+            entry = commit.get_entry()
+            if entry:
+                entries.append(entry)
     return {
         'result': Result.OK,
         'entries': entries
