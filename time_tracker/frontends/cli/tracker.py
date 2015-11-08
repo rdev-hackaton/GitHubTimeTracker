@@ -6,7 +6,7 @@ from time_tracker.config import Config
 @click.command()
 @click.option('--login', prompt='GitHub login',
               help='Your GitHub login', default=None)
-@click.option('--password', prompt='GitHub password',
+@click.option('--password', prompt='GitHub password', hide_input=True,
               help='Your GitHub password', default=None)
 @click.option('--repo', prompt='Repo address (url or local path)',
               help='Repository.')
