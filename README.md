@@ -15,21 +15,25 @@ for tracking time and budget spent on project.
 To get list of all commit entries in your project call GitHubTimeTracker with address to your repository. For more specific data use flags.
 
     $ ghtt
-    Repo address (url or local path):
-    $ https://github.com/...
-    
+    Github login or personal access token:
+    $ myusername
+    Github password:
+    $ mypassword
+    Repo name:
+    $ GitHubTimeTracker #input your repository name
+
 You may provide your repository address inline. If you don't, GitHubTimeTracker will ask you for it explicitely.
 
-    --repo repoAddress
+    --repo repoName
 
 You may get info about specific commiter, issue and milestone.
 
     --commiter username
 
     --issue numberOfIssue
-    
+
     --milestone
-    
+
 If you want to get total time and budget of your request use total flag.
 
     --total
