@@ -16,11 +16,11 @@ To get list of all commit entries in your project call GitHubTimeTracker with ad
 
     $ ghtt
     Github login or personal access token:
-    $ myusername
-    Github password:
-    $ mypassword
+    $ my_username
+    Github password: (only for username login)
+    $ 123456
     Repo name:
-    $ GitHubTimeTracker #input your repository name
+    $ my_repo
 
 You may provide your repository address inline. If you don't, GitHubTimeTracker will ask you for it explicitely.
 
