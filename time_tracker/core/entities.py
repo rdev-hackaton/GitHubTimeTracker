@@ -1,4 +1,4 @@
-from .utils import parse_time_entry
+from time_tracker.utils import parse_time_entry
 
 
 class Issue:
