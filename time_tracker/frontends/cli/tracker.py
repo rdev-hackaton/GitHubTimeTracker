@@ -25,10 +25,11 @@ def print_time_tracking_info(
         login, password, repo, committer, issue, milestone, total):
     """Print time/budget info"""
 
-    try:
-        issue = int(issue)
-    except (ValueError, TypeError):
-        raise SystemExit("Wrong issue number: {}".format(issue))
+    if issue:
+        try:
+            issue = int(issue)
+        except (ValueError, TypeError):
+            raise SystemExit("Wrong issue number: {}".format(issue))
 
     pprint_header(repo_name=repo, issue=issue, milestone=milestone)
 
