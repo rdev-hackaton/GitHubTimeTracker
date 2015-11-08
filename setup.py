@@ -6,7 +6,7 @@ install_requires = [
     'PyGithub==1.26.0',
 ]
 console_scripts = [
-    'ghttracker = time_tracker.frontends.cli.tracker:print_time_tracking_info',
+    'ghtt = time_tracker.frontends.cli.tracker:print_time_tracking_info',
 ]
 
 if __name__ == '__main__':
