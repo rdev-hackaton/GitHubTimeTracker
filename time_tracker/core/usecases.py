@@ -1,9 +1,8 @@
 from .results import Result
 
-CommitterParser = object()  # TODO
 
-
-def get_entries_list(data_source, repo_name, committer, issue, milestone):
+def get_entries_list(data_source, repo_name, committer=None, issue=None,
+                     milestone=None):
     repo = data_source.get_repo(repo_name)
     if not repo:
         return {
@@ -30,7 +29,16 @@ def get_entries_list(data_source, repo_name, committer, issue, milestone):
     }
 
 
-def get_total_stats(data_source, repo_name, committer, issue, milestone):
-    # TODO sum up results
-    return get_entries_list(
+def get_total_stats(data_source, repo_name, committer=None, issue=None,
+                    milestone=None):
+    """Return a summary of time entries data for given queries."""
+    data = get_entries_list(
         data_source, repo_name, committer, issue, milestone)
+    if data['result'] == Result.OK:
+        return {
+            'result': Result.OK,
+            'time': sum(e.time for e in data['entries']),
+            'entries': len(data['entries']),
+        }
+    else:
+        return data  # Forward the error
