@@ -6,6 +6,10 @@ import abc
 
 class DataSource(metaclass=abc.ABCMeta):
 
+    def __init__(self, login=None, password=None):
+        self.password = password
+        self.login = login
+
     @abc.abstractmethod
     def get_repo(self, name):
         """

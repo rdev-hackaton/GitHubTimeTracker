@@ -21,7 +21,8 @@ class Issue:
 
     def get_entries(self):
         entries = []
-        for comment in [self.message] + self.comments:
+        comments_messages = [c.message for c in self.comments]
+        for comment in [self.message] + comments_messages:
             entry = Entry.from_string(comment)
             if entry:
                 entries.append(entry)

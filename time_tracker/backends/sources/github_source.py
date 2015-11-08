@@ -7,14 +7,14 @@ from time_tracker.core.entities import Commit, Committer, Issue, Comment
 class GithubDataSource(DataSource):
 
     def get_repo(self, name):
-        return GithubRepository(name)
+        return GithubRepository(name, self.login, self.password)
 
 
 class GithubRepository(Repository):
 
-    def __init__(self, name):
+    def __init__(self, name, login=None, password=None):
         Repository.__init__(self, name)
-        self._repo = Github().get_repo(self.name)
+        self._repo = Github(login, password).get_repo(self.name)
 
     def get_commits_by_user_name(self, username):
         commits = self._repo.get_commits(author=username)
@@ -52,7 +52,7 @@ class GithubRepository(Repository):
     @staticmethod
     def _issue_to_model(issue):
         comments = [GithubRepository._comment_to_model(c)
-                    for c in issue.comments]
+                    for c in issue.get_comments()]
         return Issue(issue.number, issue.title, issue.body, comments)
 
     @staticmethod
