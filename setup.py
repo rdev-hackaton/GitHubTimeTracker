@@ -16,6 +16,9 @@ if __name__ == '__main__':
         version='0.0.1',
         packages=find_packages(exclude=['hooks', 'tests']),
         include_package_data=True,
+        package_data={
+            'time_tracker': ['*.json']
+        },
         entry_points={
             'console_scripts': console_scripts
         }
