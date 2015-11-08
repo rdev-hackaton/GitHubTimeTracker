@@ -18,8 +18,8 @@ def get_entries_list(data_source, repo_name, committer=None, issue=None,
             issue.get_entries()
             for issue in issues
         ])
-    if commiter:
-        for commit in repo.get_commits_by_user_name(commiter):
+    if committer:
+        for commit in repo.get_commits_by_user_name(committer):
             entry = commit.get_entry()
             if entry:
                 entries.append(entry)
