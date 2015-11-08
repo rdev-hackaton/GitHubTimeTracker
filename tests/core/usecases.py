@@ -4,7 +4,7 @@ from tests.core.mock_source import MockSource
 from time_tracker.core.results import Result
 from time_tracker.core.usecases import get_entries_list, get_total_stats
 
-
+# TODO - fix those tests to actually test anything
 class TestUseCases(object):
 
     @pytest.mark.parametrize('input_data', [
