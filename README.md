@@ -38,6 +38,18 @@ If you want to get total time and budget of your request use total flag.
 
     --total
 
+## Time logging
+
+You can tag your activities with the amount of time spent on them by adding a simple prefix. Here are a few examples:
+
+    :clock1: 15m | Initial research
+    :clock12: 2h 30m | Fix the javascript error on iOS / safari
+    :clock5: 4d16h Yak shaving
+
+The line should begin with the `:clock1:` bit - pick any clock emoji you like - and then be followed by `Xd`, `Xh` or `Xm` for days, hours and minutes. The pipe symbol is optional, but strongly recommended as it provides a visual separation between the time log and the comment.
+
+You can use this syntax to log time spent on commits, issues, pull requests and so forth.
+
 ## Authors
 
 [<img alt="Marek Bednarski" src="https://avatars2.githubusercontent.com/u/13423250" height="60px">](https://github.com/b-me)
