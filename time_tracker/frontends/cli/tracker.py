@@ -36,7 +36,7 @@ def print_time_tracking_info(repo, committer, issue, milestone, total):
 
     config = Config
     backend = config.get_backend()
-    repository = Repository(backend)
+    # repository = Repository(backend)
 
     if total:
         pretty_print_stats(get_total_stats(data_source, repo, committer,
