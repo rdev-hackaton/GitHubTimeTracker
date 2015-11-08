@@ -18,4 +18,4 @@ class TestUseCases(object):
         result = get_entries_list(data_source, 'test', **input_data)
         print(result['entries'])
         assert result['result'] == Result.OK
-        assert len(result['entries']) == 0, "Entries: {0}".format(result['entries'])
+        assert len(result['entries']) == 0
