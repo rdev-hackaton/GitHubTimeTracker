@@ -8,10 +8,12 @@ class TestEntryFromString:
         time = lambda s: Entry.from_string(s).time
         assert time(':cLoCk1: 5M') == \
             timedelta(minutes=5), "Any case"
-        assert time('  :clock1:  5m  ') == \
-            timedelta(minutes=5), "Whitespace"
         assert time(':clock1: 1d2h5m') == \
             timedelta(days=1, hours=2, minutes=5), "Several units"
+        assert time('  :clock1:  5m  ') == \
+            timedelta(minutes=5), "Whitespace"
+        assert time('  :clock1:  1d  2h  5m  ') == \
+            timedelta(days=1, hours=2, minutes=5), "More whitespace"
         assert time(':clock1: 2h130m') == \
             timedelta(hours=4, minutes=10), "Overlapping units"
         assert time('This is a test\n'
