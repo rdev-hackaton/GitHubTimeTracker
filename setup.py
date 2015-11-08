@@ -13,6 +13,7 @@ if __name__ == '__main__':
     setup(
         name=name,
         install_requires=install_requires,
+        version='0.0.1',
         packages=find_packages(exclude=['hooks', 'tests']),
         entry_points={
             'console_scripts': console_scripts
