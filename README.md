@@ -1,57 +1,49 @@
 # GitHubTimeTracker
-
 [![Build Status](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker.svg?branch=master)](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker)
 [![Coverage Status](https://coveralls.io/repos/rdev-hackaton/GitHubTimeTracker/badge.svg?branch=master&service=github)](https://coveralls.io/github/rdev-hackaton/GitHubTimeTracker?branch=master)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rdev-hackaton/GitHubTimeTracker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-GitHubTimeTracker is a python library inspired on [StephenOTT](https://github.com/StephenOTT) / [Github-Time-Tracking](https://github.com/StephenOTT/GitHub-Time-Tracking#time-tracking-usage-patterns)
-for tracking time and budget spent on project.
+GitHubTimeTracker is a python library inspired on [StephenOTT](https://github.com/StephenOTT) / [Github-Time-Tracking](https://github.com/StephenOTT/GitHub-Time-Tracking)
+for tracking time and budget spent on a project.
 
 ## Installation
     pip install git+https://github.com/rdev-hackaton/GitHubTimeTracker
+
 ## Usage
 
 ### CLI
-To get list of all commit entries in your project call GitHubTimeTracker with address to your repository. For more specific data use flags.
+GitHubTimeTracker comes with a simple command-line interface. Just type `ghtt` to enter interactive mode, or toss in a few options to filter the results.
 
-    $ ghtt
-    Github login or personal access token:
-    $ my_username
-    Github password: (only for username login)
-    $ 123456
-    Repo name:
-    $ my_repo
+```
+Usage: ghtt [OPTIONS]
 
-You may provide your repository address inline. If you don't, GitHubTimeTracker will ask you for it explicitely.
+  Print time/budget info
 
-    --repo repoName
+Options:
+  --token, --login TEXT  Your GitHub login or personal access token
+  --password TEXT        Your GitHub password
+  --repo TEXT            Repository.
+  --committer TEXT       Limit results to given committer.
+  --issue TEXT           Limit results to commits related to given issue.
+  --milestone TEXT       Limit results to commits related to given milestone.
+  --total / --non-total  Give total time/budget instead of a list of entries.
+  --help                 Show this message and exit.
+```
 
-You may get info about specific commiter, issue and milestone.
-
-    --commiter username
-
-    --issue numberOfIssue
-
-    --milestone
-
-If you want to get total time and budget of your request use total flag.
-
-    --total
-
-## Time logging
-
+### Time logging
 You can tag your activities with the amount of time spent on them by adding a simple prefix. Here are a few examples:
 
-    :clock1: 15m | Initial research
-    :clock12: 2h 30m | Fix the javascript error on iOS / safari
-    :clock5: 4d16h Yak shaving
+```
+:clock1: 15m | Initial research
+:clock12: 2h 30m | Fix the javascript error on iOS / safari
+:clock5: 4d16h Yak shaving
+```
 
 The line should begin with the `:clock1:` bit - pick any clock emoji you like - and then be followed by `Xd`, `Xh` or `Xm` for days, hours and minutes. The pipe symbol is optional, but strongly recommended as it provides a visual separation between the time log and the comment. Any text after that will be treated as a comment to the time log entry.
 
 You can use this syntax to log time spent on commits, issues, pull requests and so forth.
 
 ## Authors
-
 [<img alt="Marek Bednarski" src="https://avatars2.githubusercontent.com/u/13423250" height="60px">](https://github.com/b-me)
 [<img alt="Filip Figiel" src="https://avatars1.githubusercontent.com/u/4096683" height="60px">](https://github.com/megapctr)
 [<img alt="Łukasz Haze" src="https://avatars1.githubusercontent.com/u/2180285" height="60px">](https://github.com/lhaze)
