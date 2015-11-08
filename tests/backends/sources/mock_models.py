@@ -30,7 +30,8 @@ class Commit(object):
 
 class User(object):
 
-    def __init__(self, name, login, email):
+    def __init__(self, name, login, email, url):
+        self.url = url
         self.name = name
         self.login = login
         self.email = email
@@ -66,6 +67,7 @@ class UserFactory(factory.Factory):
     name = factory.Faker('first_name')
     login = factory.Faker('name')
     email = factory.Faker('email')
+    url = factory.Faker('url')
 
 
 class GitCommitFactory(factory.Factory):
