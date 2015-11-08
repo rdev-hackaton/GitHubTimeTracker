@@ -6,7 +6,7 @@ from time_tracker.config import Config
 @click.command()
 @click.option('--login', prompt='GitHub login',
               help='Your GitHub login', default=None)
-@click.option('--pass', prompt='GitHub password',
+@click.option('--password', prompt='GitHub password',
               help='Your GitHub password', default=None)
 @click.option('--repo', prompt='Repo address (url or local path)',
               help='Repository.')
@@ -18,7 +18,8 @@ from time_tracker.config import Config
               help='Limit results to commits related to given milestone.')
 @click.option('--total/--non-total', default=False,
               help='Give total time/budget instead of a list of entries.')
-def print_time_tracking_info(repo, committer, issue, milestone, total):
+def print_time_tracking_info(
+        login, password, repo, committer, issue, milestone, total):
     """Print time/budget info"""
     click.echo('\nRepository: ' + repo)
 
@@ -40,7 +41,7 @@ def print_time_tracking_info(repo, committer, issue, milestone, total):
         click.echo('    Results limited to milestone: ' + milestone)
 
     config = Config()
-    data_source = config.get_backend()()
+    data_source = config.get_backend()(login, password)
 
     if total:
         pretty_print_stats(get_total_stats(data_source, repo, committer,
