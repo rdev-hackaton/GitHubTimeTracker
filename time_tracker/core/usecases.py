@@ -12,17 +12,17 @@ def get_entries_list(data_source, repo_name, committer=None, issue=None,
     if issue:
         issue = repo.get_issue(issue)
         entries.extend(issue.get_entries())
-    else:
-        for issue in repo.get_issues():
-            entries.extend(issue.get_entries())
-
     if committer:
         for commit in repo.get_commits_by_user_name(committer):
             entries.extend(commit.get_entries())
-    else:
+    if not issue and not commiter:
+        entries_set = set()
+        for issue in repo.get_issues():
+            entries_set.update(issue.get_entries())
         for commit in repo.get_commits():
-            entries.extend(commit.get_entries())
-
+            entries_set.update(commit.get_entries())
+            issue_entries = issue.get_entries()
+        entries = list(entries_set)
     return {
         'result': Result.OK,
         'entries': entries
