@@ -1,6 +1,8 @@
 import click
+
 from time_tracker.core.usecases import get_entries_list, get_total_stats
 from time_tracker.config import Config
+from .pprint import pprint_entry, pprint_header, pprint_stats
 
 
 @click.command()
@@ -22,35 +24,26 @@ from time_tracker.config import Config
 def print_time_tracking_info(
         login, password, repo, committer, issue, milestone, total):
     """Print time/budget info"""
-    click.echo('\nRepository: ' + repo)
 
-    def pretty_print_entry(entry):
-        output_string = ''
-        if committer:
-            output_string += 'Committer: ' + committer + ' '
-        output_string += 'Time: %s Cost: %s' % (entry['time'], entry['cost'])
-        output_string += ' Commit: ' + str(entry['commit'])
-        click.echo(output_string)
+    try:
+        issue = int(issue)
+    except (ValueError, TypeError):
+        raise SystemExit("Wrong issue number: {}".format(issue))
 
-    def pretty_print_stats(stats):
-        # FIXME
-        click.echo(stats['result'])
-
-    if issue:
-        click.echo('    Results limited to issue: ' + issue)
-    if milestone:
-        click.echo('    Results limited to milestone: ' + milestone)
+    pprint_header(repo_name=repo, issue=issue, milestone=milestone)
 
     config = Config()
     data_source = config.get_backend()(login, password)
 
     if total:
-        pretty_print_stats(get_total_stats(data_source, repo, committer,
-                                           issue, milestone))
+        result = get_total_stats(
+            data_source, repo, committer, issue, milestone)
+        pprint_stats(result)
     else:
-        for entry in get_entries_list(data_source, repo, committer,
-                                      issue, milestone):
-            pretty_print_entry(entry)
+        result = get_entries_list(
+            data_source, repo, committer, issue, milestone)
+        for entry in result['entries']:
+            pprint_entry(entry, committer)
 
 
 if __name__ == '__main__':
