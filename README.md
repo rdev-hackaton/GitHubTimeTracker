@@ -31,15 +31,15 @@ Options:
 ```
 
 ### Time logging
-You can tag your activities with the amount of time spent on them by adding a simple prefix. Here are a few examples:
+Activities should be prefixed with an amount of time spent on them. The prefix has a few variations:
 
-```
-:clock1: 15m | Initial research
-:clock12: 2h 30m | Fix the javascript error on iOS / safari
-:clock5: 4d16h Yak shaving
-```
+| Example | Code |
+| --------- | ------ |
+| :clock1: 15m \| Initial research | `:clock1: 15m | Initial research` |
+| :clock12: 2h 30m \| Fix the javascript error on safari | `:clock12: 2h 30m | Fix the javascript error on safari` |
+| :clock5: 4d16h Yak shaving | `:clock5: 4d16h Yak shaving` |
 
-The line should begin with the `:clock1:` bit - pick any clock emoji you like - and then be followed by `Xd`, `Xh` or `Xm` for days, hours and minutes. The pipe symbol is optional, but strongly recommended as it provides a visual separation between the time log and the comment. Any text after that will be treated as a comment to the time log entry.
+The line should begin with a clock emoji, and then be followed by `d`, `h` or `m` for days, hours and minutes. Any text after that will be treated as a comment to the time log entry.
 
 You can use this syntax to log time spent on commits, issues, pull requests and so forth.
 
