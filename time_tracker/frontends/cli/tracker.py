@@ -8,7 +8,7 @@ from time_tracker.config import Config
               prompt='GitHub login or personal access token',
               help='Your GitHub login or personal access token')
 @click.option('--password',
-              prompt='GitHub password (leav empty if token used)',
+              prompt='GitHub password (leave empty if token used)',
               hide_input=True, help='Your GitHub password', default='')
 @click.option('--repo', prompt='Repo name', help='Repository.')
 @click.option('--committer', default=None,
