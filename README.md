@@ -8,9 +8,10 @@ GitHubTimeTracker is a python library inspired on [StephenOTT](https://github.co
 for tracking time and budget spent on project.
 
 ## Authors
-[![Marek Bednarski](https://avatars2.githubusercontent.com/u/13423250?v=3&s=60)](https://github.com/b-me)
-[![Filip Figiel](https://avatars1.githubusercontent.com/u/4096683?v=3&s=60)](https://github.com/megapctr)
-[![Łukasz Haze](https://avatars1.githubusercontent.com/u/2180285?v=3&s=60)](https://github.com/lhaze)
-[![Łukasz Kożuchowski](https://avatars3.githubusercontent.com/u/1458848?v=3&s=60)](https://github.com/evalapply)
-[![Piotr Pęczek](https://avatars0.githubusercontent.com/u/2931838?v=3&s=60)](https://github.com/ppeczek)
-[![Jakub Skałecki](https://avatars3.githubusercontent.com/u/3935986?v=3&s=60)](https://github.com/Valian)
+
+[<img alt="Marek Bednarski" src="https://avatars2.githubusercontent.com/u/13423250" height="60px">](https://github.com/b-me)
+[<img alt="Filip Figiel" src="https://avatars1.githubusercontent.com/u/4096683" height="60px">](https://github.com/megapctr)
+[<img alt="Łukasz Haze" src="https://avatars1.githubusercontent.com/u/2180285" height="60px"](https://github.com/lhaze)
+[<img alt="Łukasz Kożuchowski" src="https://avatars3.githubusercontent.com/u/1458848" height="60px">](https://github.com/evalapply)
+[<img alt="Piotr Pęczek" src="https://avatars0.githubusercontent.com/u/2931838" height="60px">](https://github.com/ppeczek)
+[<img alt="Jakub Skałecki" src="https://avatars3.githubusercontent.com/u/3935986" height="60px">](https://github.com/Valian)
