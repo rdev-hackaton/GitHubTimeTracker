@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from .results import Result
 
 
@@ -34,7 +36,7 @@ def get_total_stats(data_source, repo_name, committer=None, issue=None,
     if data['result'] == Result.OK:
         return {
             'result': Result.OK,
-            'time': sum(e.time for e in data['entries']),
+            'time': sum((e.time for e in data['entries']), timedelta()),
             'entries': len(data['entries']),
         }
     else:

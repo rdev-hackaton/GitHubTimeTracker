@@ -20,5 +20,5 @@ def pprint_entry(entry, committer=None):
 
 
 def pprint_stats(stats):
-    # FIXME
-    click.echo(stats['result'])
+    click.echo("    Total time: {}".format(stats['time']))
+    click.echo("    Total entries: {}".format(stats['entries']))
