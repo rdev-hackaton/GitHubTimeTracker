@@ -36,6 +36,7 @@ def print_time_tracking_info(
     config = Config()
     data_source = config.get_backend()(login, password)
 
+    click.echo("Loading...")
     if total:
         result = get_total_stats(
             data_source, repo, committer, issue, milestone)
