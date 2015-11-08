@@ -16,7 +16,6 @@ class TestUseCases(object):
     def test_get_entries_usecase(self, input_data):
         data_source = MockSource()
         result = get_entries_list(data_source, 'test', **input_data)
-        print(result['entries'])
         assert result['result'] == Result.OK
 
     @pytest.mark.parametrize('input_data', [
@@ -28,5 +27,4 @@ class TestUseCases(object):
     def test_get_total_usecase(self, input_data):
         data_source = MockSource()
         result = get_total_stats(data_source, 'test', **input_data)
-        print(result['entries'])
         assert result['result'] == Result.OK
