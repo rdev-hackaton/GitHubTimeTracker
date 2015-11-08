@@ -1,5 +1,6 @@
 import importlib
 import json
+import os
 import re
 
 
@@ -132,11 +133,13 @@ class Config:
     Class representing config
     """
 
-    def __init__(self, file_name='config.json'):
+    def __init__(self, file_name=None):
+        file_name = file_name or os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), 'config.json')
         self.backends = Backends()
         self._process_config_file(file_name)
 
-    def _process_config_file(self, file_name='config.json'):
+    def _process_config_file(self, file_name):
         """
         Gets config file and process it
         """
