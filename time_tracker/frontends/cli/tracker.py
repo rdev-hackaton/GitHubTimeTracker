@@ -4,6 +4,10 @@ from time_tracker.config import Config
 
 
 @click.command()
+@click.option('--login', prompt='GitHub login',
+              help='Your GitHub login', default=None)
+@click.option('--pass', prompt='GitHub password',
+              help='Your GitHub password', default=None)
 @click.option('--repo', prompt='Repo address (url or local path)',
               help='Repository.')
 @click.option('--committer', default=None,
