@@ -13,16 +13,12 @@ class DependentOption(Option):
         True means that prompt is only needed if option on which
         this one depends is present and not None, False the opposite.
         """
-        self.prompt_depends_on = kwargs.pop('prompt_depends_on', None)
-        if self.prompt_depends_on \
-                and not isinstance(self.prompt_depends_on, tuple):
+        self.prompt_depends_on = kwargs.pop('prompt_depends_on')
+        if not isinstance(self.prompt_depends_on, tuple):
             raise TypeError("prompt_depends_on should be a tuple")
         super().__init__(*args, **kwargs)
 
     def _check_prompt_dependency(self, ctx):
-        if not self.prompt_depends_on:
-            return True
-
         option, present = self.prompt_depends_on
         return bool(ctx.params.get(option, None)) == present
 
