@@ -8,14 +8,14 @@ from .options import DependentOption
 
 @click.command()
 @click.option('--token', default=None,
-              help='Your GitHub personal access token')
+              help='Your GitHub personal access token.')
 @click.option('--login',
               prompt='GitHub login', default=None,
-              help='Your GitHub login (use this or token, not both)',
+              help='Your GitHub login (use this or token, not both).',
               cls=DependentOption, prompt_depends_on=('token', False))
 @click.option('--password',
               prompt='GitHub password', default=None,
-              hide_input=True, help='Your GitHub password',
+              hide_input=True, help='Your GitHub password.',
               cls=DependentOption, prompt_depends_on=('login', True))
 @click.option('--repo', prompt='Repo name', help='Repository.')
 @click.option('--committer', default=None,
