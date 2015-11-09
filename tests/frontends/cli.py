@@ -17,7 +17,7 @@ def test_cli():
     runner = CliRunner()
     result = runner.invoke(
         print_time_tracking_info,
-        ['--token', 'dummy', '--password', '', '--repo', 'dummy']
+        ['--token', 'dummy', '--repo', 'dummy']
     )
     assert not result.exception
 
@@ -26,7 +26,7 @@ def test_cli_total():
     runner = CliRunner()
     result = runner.invoke(
         print_time_tracking_info,
-        ['--token', 'dummy', '--password', '', '--repo', 'dummy', '--total']
+        ['--token', 'dummy', '--repo', 'dummy', '--total']
     )
     assert not result.exception
 
@@ -35,7 +35,6 @@ def test_cli_fail():
     runner = CliRunner()
     result = runner.invoke(
         print_time_tracking_info,
-        ['--token', 'dummy', '--password', '', '--repo', 'dummy', '--total',
-         '--issue', 'a']
+        ['--token', 'dummy', '--repo', 'dummy', '--total', '--issue', 'a']
     )
     assert result.exception
