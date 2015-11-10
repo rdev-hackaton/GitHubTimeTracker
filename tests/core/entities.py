@@ -30,8 +30,8 @@ class TestEntryFromString:
         time = lambda s: Entry.from_string(s).time
         assert time(':cLoCk1: 5M') == \
             timedelta(minutes=5), "Any case"
-        assert time(':clock1: 1d2h5m') == \
-            timedelta(days=1, hours=2, minutes=5), "Several units"
+        assert time(':clock1: 1d2h5m30s') == \
+            timedelta(days=1, hours=2, minutes=5, seconds=30), "Several units"
         assert time('  :clock1:  5m  ') == \
             timedelta(minutes=5), "Whitespace"
         assert time('  :clock1:  1d  2h  5m  ') == \

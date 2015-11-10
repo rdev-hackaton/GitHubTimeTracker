@@ -11,6 +11,8 @@ _entry_re = re.compile(
     (?:(?P<hours>\d+)\s*h)?   # Hours
     \s*                       # - Whitespace
     (?:(?P<minutes>\d+)\s*m)? # Minutes
+    \s*                       # - Whitespace
+    (?:(?P<seconds>\d+)\s*s)? # Seconds
     \s*(\|\s*)?               # - Whitespace and optional pipe
     (?P<comment>.+)?          # Comment
     \s*''', re.VERBOSE | re.IGNORECASE)
