@@ -1,7 +1,7 @@
 # GitHubTimeTracker
-[![Build Status](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker.svg?branch=master)](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker)
-[![Coverage Status](https://coveralls.io/repos/rdev-hackaton/GitHubTimeTracker/badge.svg?branch=master&service=github)](https://coveralls.io/github/rdev-hackaton/GitHubTimeTracker?branch=master)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rdev-hackaton/GitHubTimeTracker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://img.shields.io/travis/rdev-hackaton/GitHubTimeTracker/master.svg)](https://travis-ci.org/rdev-hackaton/GitHubTimeTracker)
+[![Coverage Status](https://img.shields.io/coveralls/rdev-hackaton/GitHubTimeTracker/master.svg)](https://coveralls.io/github/rdev-hackaton/GitHubTimeTracker?branch=master)
+[![Gitter](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/rdev-hackaton/GitHubTimeTracker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 GitHubTimeTracker is a python library inspired on [StephenOTT](https://github.com/StephenOTT) / [Github-Time-Tracking](https://github.com/StephenOTT/GitHub-Time-Tracking)
 for tracking time and budget spent on a project.
