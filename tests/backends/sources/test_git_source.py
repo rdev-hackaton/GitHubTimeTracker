@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# author: Jakub Skałecki (jakub.skalecki@gmail.com)
-
 import mock
 
 from tests.backends.sources.mock_models import CommitFactory, UserFactory, \
