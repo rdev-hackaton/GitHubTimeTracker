@@ -47,5 +47,9 @@ def print_time_tracking_info(
             pprint_entry(entry, committer)
 
 
-if __name__ == '__main__':
-    print_time_tracking_info()
+def run_cli(name):
+    if name == '__main__':
+        print_time_tracking_info()
+
+
+run_cli(__name__)

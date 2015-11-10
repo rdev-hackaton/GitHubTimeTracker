@@ -2,10 +2,12 @@ import click
 import pytest
 
 from click.testing import CliRunner
+from mock import Mock
 
 from tests.core.mock_source import MockSource
 
-from time_tracker.frontends.cli.tracker import print_time_tracking_info
+from time_tracker.frontends.cli.tracker import print_time_tracking_info, \
+    run_cli
 from time_tracker.frontends.cli.options import DependentOption
 
 
@@ -34,13 +36,50 @@ def test_cli_total():
     assert not result.exception
 
 
+def test_cli_issue():
+    runner = CliRunner()
+    result = runner.invoke(
+        print_time_tracking_info,
+        ['--token', 'dummy', '--repo', 'dummy', '--issue', '1']
+    )
+    assert not result.exception
+
+
+def test_cli_milestone():
+    runner = CliRunner()
+    result = runner.invoke(
+        print_time_tracking_info,
+        ['--token', 'dummy', '--repo', 'dummy', '--milestone', 'dummy']
+    )
+    assert not result.exception
+
+
+def test_cli_committer():
+    runner = CliRunner()
+    result = runner.invoke(
+        print_time_tracking_info,
+        ['--token', 'dummy', '--repo', 'dummy', '--committer', 'dummy']
+    )
+    assert not result.exception
+
+
 def test_cli_fail():
     runner = CliRunner()
     result = runner.invoke(
         print_time_tracking_info,
-        ['--token', 'dummy', '--repo', 'dummy', '--total', '--issue', 'a']
+        ['--token', 'dummy', '--repo', 'dummy', '--issue', 'a']
     )
     assert result.exception
+
+
+def test_run_cli(monkeypatch):
+    mocked_cli = Mock()
+    monkeypatch.setattr(
+        'time_tracker.frontends.cli.tracker.print_time_tracking_info',
+        mocked_cli)
+
+    run_cli('__main__')
+    assert mocked_cli.called
 
 
 # Options tests
