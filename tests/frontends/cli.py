@@ -2,12 +2,10 @@ import click
 import pytest
 
 from click.testing import CliRunner
-from mock import Mock
 
 from tests.core.mock_source import MockSource
 
-from time_tracker.frontends.cli.tracker import print_time_tracking_info, \
-    run_cli
+from time_tracker.frontends.cli.tracker import print_time_tracking_info
 from time_tracker.frontends.cli.options import DependentOption
 
 
@@ -70,16 +68,6 @@ def test_cli_fail():
         ['--token', 'dummy', '--repo', 'dummy', '--issue', 'a']
     )
     assert result.exception
-
-
-def test_run_cli(monkeypatch):
-    mocked_cli = Mock()
-    monkeypatch.setattr(
-        'time_tracker.frontends.cli.tracker.print_time_tracking_info',
-        mocked_cli)
-
-    run_cli('__main__')
-    assert mocked_cli.called
 
 
 # Options tests
