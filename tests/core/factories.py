@@ -1,8 +1,29 @@
 import factory
 
 from datetime import datetime
+from faker.providers.lorem.la import Provider as LoremProvider
+
 from time_tracker.core import entities
 
+
+# Faker providers
+
+class CommitMessageProvider(LoremProvider):
+    clock_list = (':clock1:', ':clock12:', ':clock5:')
+
+    @classmethod
+    def commit_message(cls):
+        kwargs = {
+            'clock': cls.random_element(cls.clock_list),
+            'minutes': cls.random_int(0, 59),
+            'sentence': cls.sentence()
+        }
+        return '{clock} {minutes}m | {sentence}'.format(**kwargs)
+
+factory.Faker.add_provider(CommitMessageProvider)
+
+
+# Factories
 
 class UserFactory(factory.Factory):
 
@@ -50,6 +71,6 @@ class CommitFactory(factory.Factory):
         model = entities.Commit
 
     committer = factory.SubFactory(UserFactory)
-    message = factory.Faker('sentence')
+    message = factory.Faker('commit_message')
     issue = factory.SubFactory(IssueFactory)
     time = datetime.utcnow()

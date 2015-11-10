@@ -20,11 +20,12 @@ Usage: ghtt [OPTIONS]
   Print time/budget info
 
 Options:
-  --token, --login TEXT  Your GitHub login or personal access token
-  --password TEXT        Your GitHub password
+  --token TEXT           Your GitHub personal access token.
+  --login TEXT           Your GitHub login (use this or token, not both).
+  --password TEXT        Your GitHub password.
   --repo TEXT            Repository.
   --committer TEXT       Limit results to given committer.
-  --issue TEXT           Limit results to commits related to given issue.
+  --issue INTEGER        Limit results to commits related to given issue.
   --milestone TEXT       Limit results to commits related to given milestone.
   --total / --non-total  Give total time/budget instead of a list of entries.
   --help                 Show this message and exit.
