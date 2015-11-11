@@ -5,9 +5,9 @@ RUN apt-get install -y wget
 RUN apt-get install -y git vim
 
 ADD / /app
-ADD /requirements.txt /app/
+ADD /dev_requirements.txt /app/
 WORKDIR /app
-RUN pip install -r requirements.txt
+RUN pip install -r dev_requirements.txt
 
 RUN echo "export LANGUAGE=en_US.UTF-8" >> /etc/profile
 RUN echo "export LANG=en_US.UTF-8" >> /etc/profile
