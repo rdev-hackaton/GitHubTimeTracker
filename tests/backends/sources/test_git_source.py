@@ -7,17 +7,22 @@ from time_tracker.core.entities import Commit, Committer, Issue, Comment
 from time_tracker.backends.sources.github_source import GithubDataSource, \
     GithubRepository
 
+mock_login = mock.patch('time_tracker.backends.sources.github_source.login')
 
-def test_get_repository():
-    repository = GithubDataSource().get_repo("test_repo")
+
+@mock_login
+def test_get_repository(mock_login):
+    repository = GithubDataSource(token='c0ff33').get_repo("test_repo")
     assert isinstance(repository, Repository)
     assert repository.name == "test_repo"
 
 
-@mock.patch('time_tracker.backends.sources.github_source.Github')
-def test_get_commits(mock_client):
+@mock_login
+def test_get_commits(mock_login):
     mock_commits = CommitFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_commits.return_value = \
+    mock_login.return_value \
+        .repository.return_value \
+        .iter_commits.return_value = \
         mock_commits
     repo = GithubRepository('test/test')
     commits = repo.get_commits()
@@ -29,10 +34,12 @@ def test_get_commits(mock_client):
         assert mock_c.committer.name == c.committer.name
 
 
-@mock.patch('time_tracker.backends.sources.github_source.Github')
-def test_get_commits_by_author(mock_client):
+@mock_login
+def test_get_commits_by_author(mock_login):
     mock_commits = CommitFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_commits.return_value = \
+    mock_login.return_value \
+        .repository.return_value \
+        .iter_commits.return_value = \
         mock_commits
     repo = GithubRepository('test/test')
     commits = repo.get_commits_by_user_name('Test')
@@ -44,10 +51,12 @@ def test_get_commits_by_author(mock_client):
         assert mock_c.committer.name == c.committer.name
 
 
-@mock.patch('time_tracker.backends.sources.github_source.Github')
-def test_get_commit_by_id(mock_client):
+@mock_login
+def test_get_commit_by_id(mock_login):
     mock_commit = CommitFactory()
-    mock_client.return_value.get_repo.return_value.get_commit.return_value = \
+    mock_login.return_value \
+        .repository.return_value \
+        .commit.return_value = \
         mock_commit
     repo = GithubRepository('test/test')
     commit = repo.get_commit('#123fdsf34f')
@@ -58,10 +67,12 @@ def test_get_commit_by_id(mock_client):
     assert mock_commit.committer.name == commit.committer.name
 
 
-@mock.patch('time_tracker.backends.sources.github_source.Github')
-def test_get_users(mock_client):
+@mock_login
+def test_get_users(mock_login):
     mock_users = UserFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_contributors.return_value = \
+    mock_login.return_value \
+        .repository.return_value \
+        .iter_contributors.return_value = \
         mock_users
     repo = GithubRepository('test/test')
     users = repo.get_contributors()
@@ -72,10 +83,12 @@ def test_get_users(mock_client):
         assert mock_u.name == u.name
 
 
-@mock.patch('time_tracker.backends.sources.github_source.Github')
-def test_get_issues(mock_client):
+@mock_login
+def test_get_issues(mock_login):
     mock_issues = IssueFactory.create_batch(3)
-    mock_client.return_value.get_repo.return_value.get_issues.return_value = \
+    mock_login.return_value \
+        .repository.return_value \
+        .iter_issues.return_value = \
         mock_issues
     repo = GithubRepository('test/test')
     issues = repo.get_issues()
@@ -85,16 +98,18 @@ def test_get_issues(mock_client):
         assert mock_i.title == i.name
         assert mock_i.body == i.message
         assert mock_i.number == i.number
-        for mock_comment, comment in zip(mock_i.get_comments(), i.comments):
+        for mock_comment, comment in zip(mock_i.iter_comments(), i.comments):
             assert isinstance(comment, Comment)
             assert mock_comment.user.name == comment.author.name
             assert mock_comment.body == comment.message
 
 
-@mock.patch('time_tracker.backends.sources.github_source.Github')
-def test_get_issue(mock_client):
+@mock_login
+def test_get_issue(mock_login):
     mock_issue = IssueFactory()
-    mock_client.return_value.get_repo.return_value.get_issue.return_value = \
+    mock_login.return_value \
+        .repository.return_value \
+        .issue.return_value = \
         mock_issue
     repo = GithubRepository('test/test')
     issue = repo.get_issue(23)
@@ -103,7 +118,7 @@ def test_get_issue(mock_client):
     assert mock_issue.title == issue.name
     assert mock_issue.body == issue.message
     assert mock_issue.number == issue.number
-    for mock_c, comment in zip(mock_issue.get_comments(), issue.comments):
+    for mock_c, comment in zip(mock_issue.iter_comments(), issue.comments):
         assert isinstance(comment, Comment)
         assert mock_c.user.name == comment.author.name
         assert mock_c.body == comment.message
