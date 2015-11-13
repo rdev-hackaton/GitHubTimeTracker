@@ -3,7 +3,8 @@ import abc
 
 class DataSource(metaclass=abc.ABCMeta):
 
-    def __init__(self, login=None, password=None):
+    def __init__(self, token=None, login=None, password=None):
+        self.token = token
         self.password = password
         self.login = login
 

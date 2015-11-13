@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 name = 'ghtt'
 install_requires = [
     'click==5.1',
-    'PyGithub==1.26.0',
+    'github3.py==0.9.4',
 ]
 console_scripts = [
     'ghtt = time_tracker.frontends.cli.tracker:print_time_tracking_info',

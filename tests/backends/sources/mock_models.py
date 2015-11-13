@@ -15,8 +15,8 @@ class Issue(object):
         self.assignee = assignee
         self.body = body
 
-    def get_comments(self):
-        return self.comments
+    def iter_comments(self):
+        return iter(self.comments)
 
 
 class Commit(object):
@@ -30,8 +30,8 @@ class Commit(object):
 
 class User(object):
 
-    def __init__(self, name, login, email, url):
-        self.url = url
+    def __init__(self, name, login, email, html_url):
+        self.html_url = html_url
         self.name = name
         self.login = login
         self.email = email
@@ -67,7 +67,7 @@ class UserFactory(factory.Factory):
     name = factory.Faker('first_name')
     login = factory.Faker('name')
     email = factory.Faker('email')
-    url = factory.Faker('url')
+    html_url = factory.Faker('url')
 
 
 class GitCommitFactory(factory.Factory):

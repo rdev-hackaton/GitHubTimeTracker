@@ -33,9 +33,11 @@ def print_time_tracking_info(
     pprint_header(repo_name=repo, issue=issue, milestone=milestone)
 
     config = Config()
-    data_source = config.get_backend()(token or login, password)
+    data_source = config.get_backend()(token=token, login=login,
+                                       password=password)
 
     click.echo("Loading...")
+
     if total:
         result = get_total_stats(
             data_source, repo, committer, issue, milestone)
