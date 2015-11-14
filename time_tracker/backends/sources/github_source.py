@@ -58,7 +58,8 @@ class GithubRepository(Repository):
     def _issue_to_model(issue):
         comments = [GithubRepository._comment_to_model(c)
                     for c in issue.iter_comments()]
-        return Issue(issue.number, issue.title, issue.body, comments)
+        return Issue(issue.number, issue.title, issue.body, issue.user,
+                     comments)
 
     @staticmethod
     def _comment_to_model(comment):

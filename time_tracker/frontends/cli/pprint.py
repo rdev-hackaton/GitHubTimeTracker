@@ -12,7 +12,8 @@ def pprint_header(repo_name, issue, milestone):
 def pprint_entry(entry, committer=None):
     output = [
         "    Time: {}".format(entry.time),
-        "    Comment: {}".format(entry.comment)
+        "    Comment: {}".format(entry.comment),
+        "    User: {}".format(entry.author.name)
     ]
     if committer:
         output.append("    Committer: " + committer)

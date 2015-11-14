@@ -2,7 +2,8 @@ from time_tracker.utils import parse_time_entry
 
 
 class Issue:
-    def __init__(self, number, name, message, comments=None):
+    def __init__(self, number, name, message, author, comments=None):
+        self.author = author
         self.number = number
         self.name = name
         self.message = message
@@ -10,9 +11,10 @@ class Issue:
 
     def get_entries(self):
         entries = []
-        comments_messages = [c.message for c in self.comments]
-        for comment in [self.message] + comments_messages:
-            entry = Entry.from_string(comment)
+        comments_messages = [(c.author, c.message) for c in self.comments]
+        for author, comment in [(self.author, self.message)] \
+                + comments_messages:
+            entry = Entry.from_string(comment, author)
             if entry:
                 entries.append(entry)
         return entries
@@ -26,7 +28,7 @@ class Commit:
         self.time = time
 
     def get_entries(self):
-        entry = Entry.from_string(self.message)
+        entry = Entry.from_string(self.message, self.committer)
         return [entry] if entry else []
 
 
@@ -53,12 +55,13 @@ class Comment:
 class Entry:
     """Represents a time entry."""
 
-    def __init__(self, time, comment=None):
+    def __init__(self, time, author, comment=None):
+        self.author = author
         self.time = time
         self.comment = comment
 
     @classmethod
-    def from_string(cls, string):
+    def from_string(cls, string, author):
         """Initialize an Entry object from string.
 
         >>> entry = Entry.from_string(':clock1: 5m | Initial commit')
@@ -71,4 +74,4 @@ class Entry:
         """
         args = parse_time_entry(string)
         if args:
-            return cls(*args)
+            return cls(args[0], author, args[1])
